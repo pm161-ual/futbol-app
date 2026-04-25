@@ -21,5 +21,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd backend-node
-          npm install
+          if [ -f backend-node/package.json ]; then
+            cd backend-node && npm install
+          else
+            echo "Sin package.json todavía"
+          fi
