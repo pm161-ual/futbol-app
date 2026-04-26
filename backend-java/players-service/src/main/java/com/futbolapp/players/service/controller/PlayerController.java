@@ -3,10 +3,13 @@ package com.futbolapp.players.service.controller;
 
 import com.futbolapp.players.service.model.Player;
 import com.futbolapp.players.service.service.PlayerService;
+import com.futbolapp.players.service.client.CommentClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/players")
@@ -15,6 +18,9 @@ public class PlayerController {
 
     @Autowired
     private PlayerService playerService;
+
+    @Autowired
+    private CommentClient commentClient;
 
     @GetMapping
     public ResponseEntity<List<Player>> getAll(
@@ -26,9 +32,12 @@ public class PlayerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id) {
-        return playerService.getOne(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return playerService.getOne(id).map(player -> {
+            Map<String, Object> response = new HashMap<>();
+            response.put("player", player);
+            response.put("comments", commentClient.getCommentsByPlayerId(id));
+            return ResponseEntity.ok(response);
+        }).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
