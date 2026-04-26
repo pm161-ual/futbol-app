@@ -25,6 +25,9 @@ const commentSchema = new mongoose.Schema({
 
 // Esquema principal de jugador
 const playerSchema = new mongoose.Schema({
+   apiId: {
+    type: Number
+  },
   nombre: {
     type: String,
     required: true

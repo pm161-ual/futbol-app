@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Rutas
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/players', require('./routes/player.routes'))
+app.use('/api/external', require('./routes/external.routes'))
 
 // Ruta de prueba
 app.get('/', (req, res) => {
