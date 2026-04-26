@@ -1,12 +1,17 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const swaggerUi = require('swagger-ui-express')
+const swaggerSpec = require('./swagger')
 require('dotenv').config()
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+// Swagger
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
