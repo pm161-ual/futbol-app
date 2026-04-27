@@ -1,0 +1,10 @@
+server:
+  port: 8082
+
+api:
+  title: Futbol App - Comments API
+  description: Gestion de Comentarios de Jugadores
+  contact:
+    name: Patricio Marcos Bibang Mba Sima
+    email: pm161@inlumine.ual.es
+version: 1.0.0

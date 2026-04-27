@@ -4,13 +4,12 @@ server:
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/configs
+        git:
+          uri: https://github.com/pm161-ual/futbol-app-config
+          default-label: main
 
 eureka:
   client:

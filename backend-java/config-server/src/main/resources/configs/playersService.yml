@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+api:
+  title: Futbol App - Players API
+  description: Gestion de Jugadores de Futbol
+  contact:
+    name: Patricio Marcos Bibang Mba Sima
+    email: pm161@inlumine.ual.es
+version: 1.0.0
