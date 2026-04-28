@@ -1,0 +1,11 @@
+module BufferApp {
+    interface Buffer {
+        boolean put(in string elemento);
+        boolean get(out string elemento);
+        boolean read(out string elemento);
+        long getNewsLength();
+        long getMaxNews();
+        boolean fijarLimiteNoticias(in long numeroMaximo);
+        oneway void shutdown();
+    };
+};

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="noticia" type="tipoNoticia"/>
+
+    <xsd:complexType name="tipoNoticia">
+        <xsd:sequence>
+            <xsd:element name="fecha"     type="tipoFecha"/>
+            <xsd:element name="interes"   type="tipoInteres"/>
+            <xsd:element name="descCorta" type="tipoDescCorta"/>
+            <xsd:element name="descLarga" type="tipoDescLarga"/>
+            <xsd:element name="etiquetas" type="tipoEtiquetas"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Fecha formato dd/mm/aaaa -->
+    <xsd:simpleType name="tipoFecha">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Interés solo puede ser alta, media o baja -->
+    <xsd:simpleType name="tipoInteres">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="alta"/>
+            <xsd:enumeration value="media"/>
+            <xsd:enumeration value="baja"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Descripción corta entre 5 y 30 caracteres -->
+    <xsd:simpleType name="tipoDescCorta">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="5"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Descripción larga entre 20 y 250 caracteres -->
+    <xsd:simpleType name="tipoDescLarga">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="20"/>
+            <xsd:maxLength value="250"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Etiquetas formato hashtag -->
+    <xsd:simpleType name="tipoEtiquetas">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(#\w+\s*){1,6}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

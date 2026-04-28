@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- Servlet Productor -->
+    <servlet>
+        <servlet-name>PutServlet</servlet-name>
+        <servlet-class>news.servlets.PutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PutServlet</servlet-name>
+        <url-pattern>/putServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet Consumidor -->
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>news.servlets.GetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/getServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet Límite -->
+    <servlet>
+        <servlet-name>LimiteServlet</servlet-name>
+        <servlet-class>news.servlets.LimiteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LimiteServlet</servlet-name>
+        <url-pattern>/limiteServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>

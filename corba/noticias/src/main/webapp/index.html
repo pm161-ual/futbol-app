@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Noticias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f0;
+            color: #2d2d2d;
+        }
+
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #2e7d32;
+        }
+
+        .card h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2e7d32;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1b5e20;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bdbdbd;
+        }
+
+        .btn-warning {
+            background-color: #f57c00;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e65100;
+        }
+
+        .limite-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .limite-group input {
+            width: 100px;
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Gestor de Noticias</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- SECCIÓN PRODUCTOR -->
+        <div class="card">
+            <h2>Insertar Noticia (Productor)</h2>
+            <form action="http://localhost:8080/noticias/putServlet" method="post">
+
+                <label>Fecha (dd/mm/aaaa):</label>
+                <input type="text" name="fecha" placeholder="ej: 16/03/2026">
+
+                <label>Nivel de interés:</label>
+                <select name="interes">
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+
+                <label>Descripción corta (5-30 caracteres sin espacios):</label>
+                <input type="text" name="descCorta" placeholder="Descripción corta">
+
+                <label>Descripción larga (20-250 caracteres sin espacios):</label>
+                <textarea name="descLarga" rows="4" 
+                placeholder="Descripción larga de la noticia..."></textarea>
+
+                <label>Etiquetas (1-6 hashtags, ej: #musica #noticias):</label>
+                <input type="text" name="etiquetas" placeholder="#etiqueta1 #etiqueta2">
+
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-primary" value="Insertar Noticia">
+                    <input type="reset" class="btn btn-secondary" value="Limpiar">
+                </div>
+
+            </form>
+        </div>
+
+        <!-- SECCIÓN CONSUMIDOR -->
+        <div class="card">
+            <h2>Consumir Noticia (Consumidor)</h2>
+            <form action="http://localhost:8080/noticias/getServlet" method="post">
+                <div class="btn-group">
+                    <button type="submit" name="accion" 
+                    value="get" class="btn btn-primary">
+                        Extraer Noticia (GET)
+                    </button>
+                    <button type="submit" name="accion" 
+                    value="read" class="btn btn-secondary">
+                        Leer Noticia (READ)
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SECCIÓN LÍMITE BUFFER -->
+        <div class="card">
+            <h2>Configurar Límite del Buffer</h2>
+            <form action="http://localhost:8080/noticias/limiteServlet" method="post">
+                <label>Número máximo de noticias en el buffer:</label>
+                <div class="limite-group">
+                    <input type="text" name="limite" placeholder="ej: 10">
+                    <button type="submit" class="btn btn-warning">
+                        Establecer Límite
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        Gestor de Noticias — Productor/Consumidor CORBA
+    </footer>
+
+</body>
+</html>
