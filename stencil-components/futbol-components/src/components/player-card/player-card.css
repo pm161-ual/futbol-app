@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 400px;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info h2 {
+  margin: 0 0 8px;
+  color: #1a1a2e;
+}
+
+.info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
