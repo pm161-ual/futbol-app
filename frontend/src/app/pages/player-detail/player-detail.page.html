@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/player-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle Jugador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="player">
+    <ion-card>
+      <img [src]="player.imagen" [alt]="player.nombre" style="width:100%; max-height:200px; object-fit:cover;" />
+      <ion-card-header>
+        <ion-card-title>{{ player.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Equipo:</strong> {{ player.equipo }}</p>
+        <p><strong>Liga:</strong> {{ player.liga }}</p>
+        <p><strong>Posición:</strong> {{ player.posicion }}</p>
+        <p><strong>Edad:</strong> {{ player.edad }}</p>
+        <p><strong>Nacionalidad:</strong> {{ player.nacionalidad }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <h3>Comentarios</h3>
+
+    <ion-card *ngFor="let comment of comments">
+      <ion-card-content>
+        <p><strong>{{ comment.autor }}</strong> — ⭐ {{ comment.valoracion }}/5</p>
+        <p>{{ comment.comentario }}</p>
+        <ion-button fill="clear" color="danger" (click)="deleteComment(comment._id || comment.id)">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <h3>Añadir comentario</h3>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input [(ngModel)]="newComment.autor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Comentario</ion-label>
+      <ion-textarea [(ngModel)]="newComment.comentario" rows="3"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Valoración (0-5)</ion-label>
+      <ion-input type="number" [(ngModel)]="newComment.valoracion" min="0" max="5"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="addComment()">
+      Añadir Comentario
+    </ion-button>
+  </div>
+</ion-content>

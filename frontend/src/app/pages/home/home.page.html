@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>PLAY⚽N </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="welcome">
+    <h1>Bienvenido a FootStats</h1>
+    <p>Gestiona jugadores y estadísticas de fútbol</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="goTo('player-list')">
+          <ion-icon name="list" slot="start"></ion-icon>
+          Jugadores
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="goTo('login')">
+          <ion-icon name="person" slot="start"></ion-icon>
+          Login
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="goTo('news')">
+          <ion-icon name="newspaper" slot="start"></ion-icon>
+          Noticias
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="goTo('ideal-team')">
+          <ion-icon name="trophy" slot="start"></ion-icon>
+          Equipo Ideal
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

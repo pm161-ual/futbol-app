@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Equipo Ideal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div style="text-align:center; padding: 20px;">
+    <h2>⚽ Genera tu Equipo Ideal</h2>
+    <p>Usando IA con los jugadores de tu base de datos</p>
+
+    <ion-button expand="block" (click)="generateIdealTeam()" [disabled]="loading">
+      {{ loading ? 'Generando...' : '🤖 Generar Equipo Ideal' }}
+    </ion-button>
+
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="idealTeam">
+    <ion-card-header>
+      <ion-card-title>🏆 Tu Equipo Ideal</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p style="white-space: pre-line;">{{ idealTeam }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

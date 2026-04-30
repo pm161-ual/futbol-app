@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/player-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Importar Jugadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="floating">Nombre del jugador</ion-label>
+    <ion-input [(ngModel)]="searchNombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Liga (ID)</ion-label>
+    <ion-input [(ngModel)]="searchLeague"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Temporada</ion-label>
+    <ion-input [(ngModel)]="searchSeason"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="search()">
+    🔍 Buscar
+  </ion-button>
+
+  <p *ngIf="loading">Buscando...</p>
+  <p *ngIf="message" color="success">{{ message }}</p>
+
+  <ion-list>
+    <ion-item *ngFor="let player of results" (click)="toggleSelect(player)" button>
+      <ion-checkbox slot="start" [checked]="isSelected(player)"></ion-checkbox>
+      <ion-label>
+        <h2>{{ player.nombre }}</h2>
+        <p>{{ player.equipo }} — {{ player.liga }}</p>
+        <p>{{ player.posicion }}</p>
+      </ion-label>
+      <img [src]="player.imagen" slot="end" style="width:50px; height:50px; border-radius:50%;" />
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="success" (click)="importSelected()" *ngIf="results.length > 0">
+    ✅ Importar seleccionados ({{ selected.length }})
+  </ion-button>
+
+</ion-content>

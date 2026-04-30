@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Jugadores</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToForm()">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Backend Java</ion-label>
+    <ion-toggle (ionChange)="toggleBackend($event)" [(ngModel)]="useJava"></ion-toggle>
+  </ion-item>
+
+  <ion-searchbar 
+    placeholder="Buscar por nombre, equipo o liga..."
+    (ionInput)="search($event)">
+  </ion-searchbar>
+
+  <ion-button expand="block" fill="outline" (click)="goToImport()">
+    Importar desde API-Football
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let player of filteredPlayers" (click)="goToDetail(player._id || player.id)" button>
+      <ion-thumbnail slot="start">
+        <img [src]="player.imagen" [alt]="player.nombre" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ player.nombre }}</h2>
+        <p>{{ player.equipo }} — {{ player.liga }}</p>
+        <p>{{ player.posicion }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

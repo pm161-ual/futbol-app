@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="isAdmin">
+    <h3>Publicar Noticia (Admin)</h3>
+
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input [(ngModel)]="newNoticia.titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contenido</ion-label>
+      <ion-textarea [(ngModel)]="newNoticia.cuerpo" rows="3"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input [(ngModel)]="newNoticia.autor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">URL Imagen</ion-label>
+      <ion-input [(ngModel)]="newNoticia.imagen"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="publishNews()">
+      Publicar Noticia
+    </ion-button>
+
+    <p *ngIf="message">{{ message }}</p>
+  </div>
+
+  <h3>Últimas Noticias</h3>
+
+  <ion-card *ngFor="let noticia of news">
+    <img *ngIf="noticia.imagen" [src]="noticia.imagen" style="width:100%; max-height:150px; object-fit:cover;" />
+    <ion-card-header>
+      <ion-card-title>{{ noticia.titulo }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ noticia.cuerpo }}</p>
+      <p><small>{{ noticia.fecha }} — {{ noticia.autor }}</small></p>
+    </ion-card-content>
+  </ion-card>
+
+  <p *ngIf="news.length === 0">No hay noticias disponibles.</p>
+
+</ion-content>

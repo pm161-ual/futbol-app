@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/player-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo Jugador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="player.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Equipo</ion-label>
+    <ion-input [(ngModel)]="player.equipo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Liga</ion-label>
+    <ion-input [(ngModel)]="player.liga"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Posición</ion-label>
+    <ion-input [(ngModel)]="player.posicion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Edad</ion-label>
+    <ion-input type="number" [(ngModel)]="player.edad"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nacionalidad</ion-label>
+    <ion-input [(ngModel)]="player.nacionalidad"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">URL Imagen</ion-label>
+    <ion-input [(ngModel)]="player.imagen"></ion-input>
+  </ion-item>
+
+  <img *ngIf="player.imagen" [src]="player.imagen" style="width:100%; max-height:200px; object-fit:cover; margin:10px 0;" />
+
+  <ion-button expand="block" fill="outline" (click)="takePhoto()">
+    📷 Usar Cámara
+  </ion-button>
+
+  <ion-button expand="block" fill="outline" (click)="getLocation()">
+    📍 Obtener Ubicación
+  </ion-button>
+
+  <p *ngIf="player.latitud">
+    📍 Lat: {{ player.latitud }}, Long: {{ player.longitud }}
+  </p>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="save()">
+    Guardar Jugador
+  </ion-button>
+
+</ion-content>
